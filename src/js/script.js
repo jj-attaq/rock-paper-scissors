@@ -1,17 +1,23 @@
-//  returns rock, paper, or scissors randomly
-function computerPlay() {
-    // random numbers
+function computerPlay() { //  returns rock, paper, or scissors randomly
+    // define R, P, and S
+    const rock = () => console.log('rock');
+    const paper = () => console.log('paper');
+    const scissors = () => console.log('scissors');
+    // random numbers from 1 to 3
     const random = Math.floor((Math.random() * 3) + 1);
-    // assign numbers to R, P, or S 
-    const rock = 1;
-    const paper = 2;
-    const scissors = 3;
     // return R, P, or S
-    if (random === rock) {
-        console.log('rock');
-    } else if (random === paper) {
-        console.log('paper');
-    } else {
-        console.log('scissors');
-    }
+    if (random === 1) {rock();} 
+    if (random === 2) {paper();} 
+    if (random === 3) {scissors();}
 }
+function playRound(playerSelection, computerSelection) {
+    // define draw
+    if (playerSelection === computerSelection) {
+        console.log('draw!')
+    }
+    // define win
+
+    // define loss
+}
+const playerSelection = 'rock';
+const computerSelection = computerPlay();
