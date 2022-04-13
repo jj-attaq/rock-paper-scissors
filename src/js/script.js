@@ -21,6 +21,6 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
     if (lose) {console.log(`you lose!`);}
     if (draw) {console.log(`it's a draw!`);}
 }
-const playerSelection = `rock` // test value, make into case insensitive prompt later
+const playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase(); // test value, make into case insensitive prompt later
 const computerSelection = computerPlay();
 console.log(playRound(playerSelection, computerSelection));
