@@ -17,10 +17,10 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
 // define draw
     const draw = playerSelection === computerSelection;
 // log result / need to return it however, per OP assignment
-    if (win) {console.log(`you win!`);}
-    if (lose) {console.log(`you lose!`);}
-    if (draw) {console.log(`it's a draw!`);}
+    if (win) {alert(`the computer chose ${computerSelection}, you win!`);}
+    if (lose) {alert(`the computer chose ${computerSelection}, you lose!`);}
+    if (draw) {alert(`the computer chose ${computerSelection}, it's a draw!`);}
 }
-const playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase(); // test value, make into case insensitive prompt later
+const playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase(); // 
 const computerSelection = computerPlay();
 console.log(playRound(playerSelection, computerSelection));
