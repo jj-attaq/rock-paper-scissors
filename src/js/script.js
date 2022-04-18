@@ -17,12 +17,12 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
 	// define draw
   const draw = playerSelection === computerSelection;
 	// log result / need to return it however, per OP assignment
-	function result() {
-		const gameState = win || lose || draw;
-		if (win) {alert(`You win! ${playerSelection} beats ${computerSelection}!`);return gameState;}
-		if (lose) {alert(`You lose! ${computerSelection} beats ${playerSelection}!`);return gameState;}
-		if (draw) {alert(`It's a draw!`);return gameState;}
+	function result(gameState) {
+		if (win) {alert(`You win! ${playerSelection} beats ${computerSelection}!`);gameState = win;return gameState;}
+		if (lose) {alert(`You lose! ${computerSelection} beats ${playerSelection}!`);gameState = lose;return gameState;}
+		if (draw) {alert(`It's a draw!`);gameState = draw;return gameState;} //`${gameState}`
 	}
+	// console.log(result());
 	return result();
 }
 const playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase();
