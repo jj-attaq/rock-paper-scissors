@@ -4,6 +4,9 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
 	const choice = [`rock`, `paper`, `scissors`];
 	computerSelection = computerPlay();
 	playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase();
+	if (playerSelection !== (`rock` || `paper` || `scissors`)) {
+		tally = `wrong`;
+	}
 
 	function computerPlay() { // computer chooses between R, P, or S from array randomly
 		const random = Math.floor(Math.random() * choice.length);
@@ -29,8 +32,9 @@ function game() {
 			playRound();
 			console.log(tally);
 		}
-		if (tally === 3 || tally === -3)
-		break;
+		if (tally === 3 || tally === -3) {
+			break;
+		}
 	}
 	if (tally > 0) {
 		alert(`YOU WON THE GAME!`);
@@ -40,6 +44,9 @@ function game() {
 	}
 	if (tally === 0) {
 		alert(`BOOOORING! It's a draw.`);
+	}
+	if (tally === `wrong`) {
+		alert(`You suck at spelling, try again.`);
 	}
 }
 game();
