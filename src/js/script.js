@@ -23,6 +23,7 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
 	if (lose) {alert(`You lose! ${computerSelection} beats ${playerSelection}!`);console.log(`lose`);tally--;return`lose`;}
 	if (draw) {alert(`It's a draw!`);console.log(`draw`);tally + 0;return `draw`;}
 }
+
 function game() {
 	for (let i = 0; i < 5; i++) {
 		if (true) {
@@ -42,35 +43,5 @@ function game() {
 		alert(`BOOOORING! It's a draw.`);
 	}
 }
+
 game();
-
-// function gameResult() {
-// 	let tally = 0;
-// 	if (playRound() === `win`) {
-// 		tally++;
-// 	}
-// 	if (playRound() === `lose`) {
-// 		tally--;
-// 	}
-// 	if (playRound() === `draw`) {
-// 		tally + 0;
-// 	}
-// 	return tally;
-// }
-
-
-// function gameResult(tally) {
-// 	switch (tally) {
-// 		case playRound() === `win`:
-// 			tally++;
-// 			break;
-// 		case playRound() === `lose`:
-// 			tally--;
-// 			break;
-// 		case playRound() === `draw`:
-// 			tally === + 0;
-// 			break;
-// 	}
-
-// }
-// gameResult();
