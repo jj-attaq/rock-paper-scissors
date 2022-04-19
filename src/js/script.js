@@ -30,8 +30,9 @@ function game() {
 			playRound();
 			console.log(tally);
 		}
-		if (tally === 3 || tally === -3)
-		break;
+		if (tally === 3 || tally === -3) {
+			break;
+		}
 	}
 	if (tally > 0) {
 		alert(`YOU WON THE GAME!`);
