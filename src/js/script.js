@@ -1,7 +1,21 @@
+const body = document.body;
+const choice = [`rock`, `paper`, `scissors`];
+
+// below not necessary, allows me to create and name DOM elements from a give array
+choice.forEach(el => { 
+		function btn(b) {
+			b = document.createElement('button');
+			b.setAttribute("id", `${el}`);
+			b.textContent = `${el}`;
+			body.append(b);
+		}
+		btn(el);
+});
+
+// --------------------------------------------
 let tally = 0;
 
 function playRound(playerSelection, computerSelection) { // play one round of R, P, S
-	const choice = [`rock`, `paper`, `scissors`];
 	computerSelection = computerPlay();
 	playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase();
 
@@ -24,25 +38,39 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
 	if (draw) {alert(`It's a draw!`);console.log(`draw`);tally + 0;return `draw`;}
 }
 
-function game() {
-	for (let i = 0; i < 5; i++) {
-		if (true) {
-			playRound();
-			console.log(tally);
-		}
-		if (tally === 3 || tally === -3) {
-			break;
-		}
-	}
-	if (tally > 0) {
-		alert(`YOU WON THE GAME!`);
-	}
-	if (tally < 0) {
-		alert(`YOU LOST THE GAME!`);
-	}
-	if (tally === 0) {
-		alert(`BOOOORING! It's a draw.`);
-	}
-}
+// function game() {
+// 	for (let i = 0; i < 5; i++) {
+// 		if (true) {
+// 			playRound();
+// 			console.log(tally);
+// 		}
+// 		if (tally === 3 || tally === -3) {
+// 			break;
+// 		}
+// 	}
+// 	if (tally > 0) {
+// 		alert(`YOU WON THE GAME!`);
+// 	}
+// 	if (tally < 0) {
+// 		alert(`YOU LOST THE GAME!`);
+// 	}
+// 	if (tally === 0) {
+// 		alert(`BOOOORING! It's a draw.`);
+// 	}
+// }
 
-game();
+// game();
+
+// const body = document.body;
+// const div = document.createElement('div');
+// const btn = document.createElement('button');
+
+// const choice = [`rock`, `paper`, `scissors`];
+// body.append(div);
+
+// function createDomElements() {
+// 	for (let i = 0; i < choice.length; i++) {
+// 		div.appendChild(btn);
+// 		btn.textContent = choice[i];
+// 	}
+// }
