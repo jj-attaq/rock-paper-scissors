@@ -1,71 +1,71 @@
 const body = document.body;
-const choice = [`rock`, `paper`, `scissors`];
+const r = `rock`;
+const p = `paper`;
+const s = `scissors`;
+const compOptions = [r, p, s];
 
+// const chooseR = document.getElementById(`rock`);
+// const chooseP = document.getElementById(`paper`);
+// const chooseS = document.getElementById(`scissors`);
 
-choice.forEach(element => { 
-		function createButtons() {
-			b = document.createElement(`button`);
-			str = `${element}`;
-			b.setAttribute(`id`, str);
-			b.setAttribute(`class`, `btn`)
-			b.textContent = str.toUpperCase();
-			body.append(b);
-		}
-		createButtons(element);
-});
+// const pR = chooseR.addEventListener('click', (e) => {
+// 	return r;
+// 	console.log(r);
+// });
+// const pP = chooseP.addEventListener('click', () => {
+// 	// return p;
+// 	console.log(p);
+// });
+// const pS = chooseS.addEventListener('click', () => {
+// 	// return s;
+// 	console.log(s);
+// });
 
-const buttons = document.querySelectorAll(`.btn`)
+const buttons = document.querySelectorAll(".btn")
 for (const button of buttons) {
-  button.addEventListener(`click`, () => {
-	  // console.log(`test`)
+  button.addEventListener('click', () => {
 		playRound();
   });
 };
 // --------------------------------------------
 let tally = 0;
 
-function playRound(playerSelection, computerSelection) { // play one round of R, P, S
-	computerSelection = computerPlay();
-	playerSelection = document.getElementById();
+function playRound(pSel, compSel) { 
+	compSel = computerPlay();
+	pSel = ;
 
-	function computerPlay() { // computer chooses between R, P, or S from array randomly
-		const random = Math.floor(Math.random() * choice.length);
-		console.log(choice[random]);
-		return choice[random];
+	function computerPlay() { 
+		const random = Math.floor(Math.random() * compOptions.length);
+		console.log(compOptions[random]);
+		return compOptions[random];
 	}
-
-  const win = (playerSelection === `rock` && computerSelection === `scissors`) ||
-    (playerSelection === `paper` && computerSelection === `rock`) ||
-		(playerSelection === `scissors` && computerSelection === `paper`);
-  const lose = (playerSelection === `rock` && computerSelection === `paper`) ||
-    (playerSelection === `paper` && computerSelection === `scissors`) ||
-    (playerSelection === `scissors` && computerSelection === `rock`);
-  const draw = playerSelection === computerSelection;
-
-	if (win) {alert(`You win! ${playerSelection} beats ${computerSelection}!`);console.log(`win`);tally++;return `win`;}
-	if (lose) {alert(`You lose! ${computerSelection} beats ${playerSelection}!`);console.log(`lose`);tally--;return`lose`;}
-	if (draw) {alert(`It's a draw!`);console.log(`draw`);tally + 0;return `draw`;}
+	
+  const win = (pSel === r && compSel === s) || (pSel === p && compSel === r) || (pSel === s && compSel === p);
+	const draw = pSel === compSel;
+  const lose = !win && !draw;
+	
+	if (win) {alert(`You win! ${pSel} beats ${compSel}!`);tally++;return `win`;}
+	if (lose) {alert(`You lose! ${compSel} beats ${pSel}!`);tally--;return `loss`;}
+	if (draw) {alert(`It's a draw!`);tally + 0;return `draw`;}
 }
 
-// function game() {
-// 	for (let i = 0; i < 5; i++) {
-// 		if (true) {
-// 			playRound();
-// 			console.log(tally);
-// 		}
-// 		if (tally === 3 || tally === -3) {
-// 			break;
-// 		}
-// 	}
-// 	if (tally > 0) {
-// 		alert(`YOU WON THE GAME!`);
-// 	}
-// 	if (tally < 0) {
-// 		alert(`YOU LOST THE GAME!`);
-// 	}
-// 	if (tally === 0) {
-// 		alert(`BOOOORING! It's a draw.`);
-// 	}
-// }
+function game() {
+	for (let i = 1; i <= 5; i++) {
+		if (tally === 3 || tally === -3) {
+			break;
+		} else {
+			console.log(`Round ${i} is a ${playRound()}. Your current score is ${tally} points.`);
+		}
+	}
+	if (tally > 0) {
+		alert(`YOU WON THE GAME!`);
+	}
+	if (tally < 0) {
+		alert(`YOU LOST THE GAME!`);
+	}
+	if (tally === 0) {
+		alert(`BOOOORING! It's a draw.`);
+	}
+}
 
 // game();
