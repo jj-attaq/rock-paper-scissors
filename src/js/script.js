@@ -1,27 +1,36 @@
 const body = document.body;
 const choice = [`rock`, `paper`, `scissors`];
 
-// below not necessary, allows me to create and name DOM elements from a give array
-choice.forEach(el => { 
-		function btn(b) {
-			b = document.createElement('button');
-			b.setAttribute("id", `${el}`);
-			b.textContent = `${el}`;
+
+choice.forEach(element => { 
+		function createButtons() {
+			b = document.createElement(`button`);
+			str = `${element}`;
+			b.setAttribute(`id`, str);
+			b.setAttribute(`class`, `btn`)
+			b.textContent = str.toUpperCase();
 			body.append(b);
 		}
-		btn(el);
+		createButtons(element);
 });
 
+const buttons = document.querySelectorAll(`.btn`)
+for (const button of buttons) {
+  button.addEventListener(`click`, () => {
+	  // console.log(`test`)
+		playRound();
+  });
+};
 // --------------------------------------------
 let tally = 0;
 
 function playRound(playerSelection, computerSelection) { // play one round of R, P, S
 	computerSelection = computerPlay();
-	playerSelection = prompt(`please write in 'rock', 'paper' or 'scissors'`, ).toLowerCase();
+	playerSelection = document.getElementById();
 
 	function computerPlay() { // computer chooses between R, P, or S from array randomly
 		const random = Math.floor(Math.random() * choice.length);
-		console.log(random, choice[random]);
+		console.log(choice[random]);
 		return choice[random];
 	}
 
@@ -60,17 +69,3 @@ function playRound(playerSelection, computerSelection) { // play one round of R,
 // }
 
 // game();
-
-// const body = document.body;
-// const div = document.createElement('div');
-// const btn = document.createElement('button');
-
-// const choice = [`rock`, `paper`, `scissors`];
-// body.append(div);
-
-// function createDomElements() {
-// 	for (let i = 0; i < choice.length; i++) {
-// 		div.appendChild(btn);
-// 		btn.textContent = choice[i];
-// 	}
-// }
