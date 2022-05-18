@@ -9,11 +9,11 @@ let numberOfRounds = 1;
 buttons.forEach((button) => {
 	button.addEventListener(`click`, () => {
 		pSelection = button.id;
-		playRound();
+		play();
 	});
 });
 
-function playRound(pSel, compSel) {
+function play(pSel, compSel) {
 	const container = document.querySelector(`#displayResults`),
 				result = document.createElement(`p`);
 	compSel = computerPlay();
@@ -22,22 +22,41 @@ function playRound(pSel, compSel) {
 	function computerPlay() { 
 		const compOptions = [r, p, s],
 					random = Math.floor(Math.random() * compOptions.length);
+		console.log(compOptions[random]);
 		return compOptions[random];
 	}
 
 	const win = (pSel === r && compSel === s) || (pSel === p && compSel === r) || (pSel === s && compSel === p),
 				draw = pSel === compSel,
 				lose = !win && !draw,	
-				winRoundText = () => result.textContent = `You win the round! ${pSel} beats ${compSel}! Your score is ${tally}`,
-				loseRoundText = () => result.textContent = `You lost the round! ${compSel} beats ${pSel}! Your score is ${tally}`, 
-				roundDrawText = () => result.textContent = `The round is a draw! Your score is ${tally}`,
-				victory = () => result.textContent = `Your score is ${tally}. YOU WON THE GAME!`,
-				defeat = () => result.textContent =`Your score is ${tally}. YOU LOST THE GAME!`,
-				undecided = () => result.textContent = `Your score is ${tally}. BOOOORING! It's a draw.`;			
+				winRoundText = () => result.textContent = `Your score is ${tally}. You win the round! ${pSel} beats ${compSel}!`,
+				loseRoundText = () => result.textContent = `Your score is ${tally}. You lost the round! ${compSel} beats ${pSel}!`, 
+				roundDrawText = () => result.textContent = `Your score is ${tally} The round is a draw!`,
+				victory = () => result.textContent += ` YOU WON THE GAME!`,
+				defeat = () => result.textContent +=` YOU LOST THE GAME!`,
+				undecided = () => result.textContent += ` BOOOORING! It's a draw.`;			
+	
+	const winThree = function() {
+		if (tally === 3) {
+			// winLose();
+			// container.appendChild(result); 
+			// createReplayButton();
+			// above commented out because functions are called before they're defined
+		}
+	}
+	const loseThree = function() {
+		if (tally === -3) {
+			// winLose();
+			// container.appendChild(result); 
+			// createReplayButton();
+			// above commented out because functions are called before they're defined
+		}
+	}	
 
 	const winRound = function() {
 		if (win) {
 			tally++;
+			// winThree();
 			numberOfRounds++; 
 			winRoundText();
 			container.appendChild(result);
@@ -48,6 +67,7 @@ function playRound(pSel, compSel) {
 	const loseRound = function() {
 		if (lose) {
 			tally--;
+			// loseThree()
 			numberOfRounds++;
 			loseRoundText();
 			container.appendChild(result);
@@ -64,44 +84,32 @@ function playRound(pSel, compSel) {
 			return;
 		}
 	}
-	const winThree = function() {
-		if (tally === 3) {
-			winRound();
-			victory();
-		} else {
-			return;
-		}
-	}
-	const loseThree = function() {
-		if (tally === -3) {
-			loseRound();
-			defeat();
-		} else {
-			return;
-		} 
+
+	function playRound() {
+		winRound();
+		loseRound();
+		roundDraw();	
 	}
 	
 	fullGame();
 	function fullGame() {
-		let gameResult = false;
-		winThree();
-		loseThree();			
+		let gameIsDone = false;
 		determineIfGameEnd();
 		
 		function determineIfGameEnd() {
+			function winLose() { 
+				if (tally > 0) victory() && (gameIsDone = true);
+				if (tally < 0) defeat() && (gameIsDone = true);
+				if (tally === 0) undecided() && (gameIsDone = true);
+				console.log(gameIsDone); 
+			}
 			if (numberOfRounds === 5) {
-				winRound();
-				loseRound();
-				roundDraw();
-				if (tally > 0) victory() && (gameResult = true);
-				if (tally < 0) defeat() && (gameResult = true);
-				if (tally === 0) undecided() && (gameResult = true); 
-				container.appendChild(result); 
-				createReplayButton();
+					playRound();
+					winLose();
+					container.appendChild(result); 
+					createReplayButton();
 			}	else {
-					winRound();
-					loseRound();
-					roundDraw();
+					playRound();
 			}
 		}
 		function createReplayButton() {
@@ -113,9 +121,8 @@ function playRound(pSel, compSel) {
 			});
 			container.append(replayButton);
 		}
-		
 		function endGame() { 	
-			if(gameResult === true) {
+			if(gameIsDone === true) {
 				tally = 0;
 				numberOfRounds = 1;
 				clearBox();
