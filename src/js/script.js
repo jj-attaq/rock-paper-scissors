@@ -4,35 +4,21 @@ const p = `paper`;
 const s = `scissors`;
 const compOptions = [r, p, s];
 
-// const chooseR = document.getElementById(`rock`);
-// const chooseP = document.getElementById(`paper`);
-// const chooseS = document.getElementById(`scissors`);
-
-// const pR = chooseR.addEventListener('click', (e) => {
-// 	return r;
-// 	console.log(r);
-// });
-// const pP = chooseP.addEventListener('click', () => {
-// 	// return p;
-// 	console.log(p);
-// });
-// const pS = chooseS.addEventListener('click', () => {
-// 	// return s;
-// 	console.log(s);
-// });
-
-const buttons = document.querySelectorAll(".btn")
-for (const button of buttons) {
-  button.addEventListener('click', () => {
+const buttons = document.querySelectorAll(`.btn`);
+buttons.forEach((button) => {
+	button.addEventListener(`click`, () => {
+		console.log(`player is ${button.id}`)
+		pSelection = button.id;
 		playRound();
-  });
-};
+	});
+});
+
 // --------------------------------------------
 let tally = 0;
 
 function playRound(pSel, compSel) { 
 	compSel = computerPlay();
-	pSel = ;
+	pSel = pSelection;
 
 	function computerPlay() { 
 		const random = Math.floor(Math.random() * compOptions.length);
@@ -69,3 +55,24 @@ function game() {
 }
 
 // game();
+
+
+
+//------------------
+
+// const chooseR = document.getElementById(`rock`);
+// const chooseP = document.getElementById(`paper`);
+// const chooseS = document.getElementById(`scissors`);
+
+// const pR = chooseR.addEventListener('click', (e) => {
+// 	return r;
+// 	console.log(r);
+// });
+// const pP = chooseP.addEventListener('click', () => {
+// 	// return p;
+// 	console.log(p);
+// });
+// const pS = chooseS.addEventListener('click', () => {
+// 	// return s;
+// 	console.log(s);
+// });
